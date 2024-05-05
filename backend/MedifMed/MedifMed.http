@@ -1,0 +1,6 @@
+@MedifMed_HostAddress = http://localhost:5179
+
+GET {{MedifMed_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
