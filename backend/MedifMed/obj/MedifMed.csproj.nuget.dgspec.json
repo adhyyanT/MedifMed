@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/adhyyan/code/dotnet/MedifMed/backend/MedifMed/MedifMed.csproj": {}
+    "D:\\code\\dotnet\\MedifMed\\backend\\MedifMed\\MedifMed.csproj": {}
   },
   "projects": {
-    "/Users/adhyyan/code/dotnet/MedifMed/backend/MedifMed/MedifMed.csproj": {
+    "D:\\code\\dotnet\\MedifMed\\backend\\MedifMed\\MedifMed.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/adhyyan/code/dotnet/MedifMed/backend/MedifMed/MedifMed.csproj",
+        "projectUniqueName": "D:\\code\\dotnet\\MedifMed\\backend\\MedifMed\\MedifMed.csproj",
         "projectName": "MedifMed",
-        "projectPath": "/Users/adhyyan/code/dotnet/MedifMed/backend/MedifMed/MedifMed.csproj",
-        "packagesPath": "/Users/adhyyan/.nuget/packages/",
-        "outputPath": "/Users/adhyyan/code/dotnet/MedifMed/backend/MedifMed/obj/",
+        "projectPath": "D:\\code\\dotnet\\MedifMed\\backend\\MedifMed\\MedifMed.csproj",
+        "packagesPath": "C:\\Users\\tripa\\.nuget\\packages\\",
+        "outputPath": "D:\\code\\dotnet\\MedifMed\\backend\\MedifMed\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/adhyyan/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\tripa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -40,13 +47,19 @@
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.5, )"
             },
             "MySql.EntityFrameworkCore": {
               "target": "Package",
@@ -76,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

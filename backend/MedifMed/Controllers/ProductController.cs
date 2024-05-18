@@ -1,4 +1,4 @@
-using MedifMed.Models;
+using MedifMed.Mappers;
 using MedifMed.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +14,6 @@ public class ProductController(IProductRepository repo) : ControllerBase
     public async Task<IActionResult> GetAllProducts()
     {
         var products = await _productRepository.GetAllProducts();
-        return Ok(products);
-    }
+        return Ok(products.Select((product)=>product.ToProductResponse()));
+    }       
 }
