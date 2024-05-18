@@ -14,6 +14,8 @@ public class ProductController(IProductRepository repo) : ControllerBase
     public async Task<IActionResult> GetAllProducts()
     {
         var products = await _productRepository.GetAllProducts();
-        return Ok(products.Select((product)=>product.ToProductResponse()));
-    }       
+        return Ok(products);
+        //return Ok(products);
+    }
+
 }

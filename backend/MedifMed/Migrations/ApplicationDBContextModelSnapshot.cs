@@ -84,12 +84,17 @@ namespace MedifMed.Migrations
             modelBuilder.Entity("MedifMed.Models.ProductDetail", b =>
                 {
                     b.HasOne("MedifMed.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductDetails")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MedifMed.Models.Product", b =>
+                {
+                    b.Navigation("ProductDetails");
                 });
 #pragma warning restore 612, 618
         }

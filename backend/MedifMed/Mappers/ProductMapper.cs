@@ -1,19 +1,30 @@
 ﻿using MedifMed.Dtos.Product;
+using MedifMed.Dtos.ProductDetailDtos;
 using MedifMed.Models;
 
 namespace MedifMed.Mappers
 {
     public static class ProductMapper
     {
-        public static ProductResponse ToProductResponse(this Product product)
+        public static ProductResponseDto ToProductResponse(this Product product)
         {
-            return new ProductResponse()
+            return new ProductResponseDto()
             {
                 AvgRating = product.AvgRating,
                 Description = product.Description,
                 Name = product.Name,
                 Price = product.Price,
-                ProductId = product.ProductId,
+                ProductDetails = product.ProductDetails.Select(d => d.ToProductDetailResponse()).ToList(),
+                ProductId = product.ProductId
+            };
+        }
+        public static ProductDetailResponseDto ToProductDetailResponse(this ProductDetail detail)
+        {
+            return new ProductDetailResponseDto()
+            {
+                Description = detail.Description,
+                Title = detail.Title,
+                ProductDetailId = detail.ProductDetailId
             };
         }
     }
