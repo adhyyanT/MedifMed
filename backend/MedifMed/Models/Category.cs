@@ -10,5 +10,8 @@ namespace MedifMed.Models
         public required string Name { get; set; }
 
         public List<Product>? Products { get; set; }
+
+        public DateTime? CreatedOn { get; set; }
+        public DateTime UpdatedOn { get; set; } = DateTime.Now;
     }
 }

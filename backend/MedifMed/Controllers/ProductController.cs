@@ -48,6 +48,10 @@ public class ProductController(IProductRepository repo) : ControllerBase
     [HttpPost("{productId}/details")]
     public async Task<IActionResult> AddProductDetail([FromBody] ProductDetailCreateRequest productDetail,[FromRoute] Guid productId)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         try
         {
             var detail = await _productRepository.AddProductDetailAsync(productDetail, productId);
