@@ -9,6 +9,16 @@ public class ApplicationDBContext: DbContext
     {
         
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Category>()
+            .HasIndex(c => c.Name)
+            .IsUnique(true);
+    }
+
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductDetail> ProductDetails { get; set; }
+
+    public DbSet<Category> Categories{ get; set; }
 }

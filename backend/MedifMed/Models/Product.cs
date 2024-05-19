@@ -17,4 +17,5 @@ public class Product
     public DateTime? CreatedOn { get; set; }
     public DateTime UpdatedOn { get; set; } = DateTime.Now;
     public List<ProductDetail> ProductDetails { get; set; }
+    public List<Category>? Categories { get; set; }
 }

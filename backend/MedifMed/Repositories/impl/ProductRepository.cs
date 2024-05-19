@@ -1,7 +1,5 @@
 using MedifMed.Database;
-using MedifMed.Dtos.Product;
 using MedifMed.Dtos.ProductDetailDtos;
-using MedifMed.Mappers;
 using MedifMed.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,30 +13,33 @@ public class ProductRepository: IProductRepository
         this._context = context;
     }
 
-    public Task<List<ProductResponseDto>> GetAllProducts()
+    public async Task<List<Product>> GetAllProductsAsync()
     {
         var query = _context.Products.Include(p => p.ProductDetails);
-        //foreach (var t in query)
-        //{
-        //    Console.WriteLine(t.Name + " "+ t.ProductDetails[0].Title);
-        //}
-        return  query.Select(p => p.ToProductResponse()).ToListAsync();
+        return await query.ToListAsync();
 
-        //var products = query
-        //.Select(p => new ProductResponseDto()
-        //{
-        //    ProductId = p.ProductId,
-        //    Name = p.Name,
-        //    Description = p.Description,
-        //    ProductDetails = p.ProductDetails.Select(pd => new ProductDetailResponseDto()
-        //    {
-        //        ProductDetailId = pd.ProductDetailId,
-        //        Description = pd.Description,
-        //        Title = pd.Title
-        //        // Map other properties as needed
-        //    }).ToList()
-        //}).ToListAsync();
-        //return products;
-        
+    }
+    public async Task<Product> GetProductByIdAsync(Guid id)
+    {
+        var product = await _context.Products
+            .Include(p => p.ProductDetails)
+            .FirstOrDefaultAsync((p) => p.ProductId == id) ?? throw new Exception("Product not found.");
+        return product;
+    }
+    public async Task<ProductDetail> AddProductDetailAsync(ProductDetailCreateRequest productDetail,
+        Guid productId)
+    {
+        var product = await GetProductByIdAsync(productId);
+        ProductDetail details = new ProductDetail
+        {
+            Description = productDetail.Description,
+            CreatedOn = DateTime.Now,
+            Title = productDetail.Title,
+            ProductId = productId,
+
+        };
+        product.ProductDetails.Add(details);
+        await _context.SaveChangesAsync();
+        return details;
     }
 }
