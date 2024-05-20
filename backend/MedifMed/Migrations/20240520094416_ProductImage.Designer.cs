@@ -3,6 +3,7 @@ using System;
 using MedifMed.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedifMed.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240520094416_ProductImage")]
+    partial class ProductImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,76 +128,6 @@ namespace MedifMed.Migrations
                     b.ToTable("ProductDetails");
                 });
 
-            modelBuilder.Entity("MedifMed.Models.ProductImage", b =>
-                {
-                    b.Property<Guid>("ProductImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("ProductImageId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
-                });
-
-            modelBuilder.Entity("MedifMed.Models.ProductReview", b =>
-                {
-                    b.Property<Guid>("ProdutReviewId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<bool>("IsGoodDelivery")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("IsGoodQuality")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("IsGoodResponse")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("ProdutReviewId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductReviews");
-                });
-
             modelBuilder.Entity("CategoryProduct", b =>
                 {
                     b.HasOne("MedifMed.Models.Category", null)
@@ -221,35 +154,9 @@ namespace MedifMed.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("MedifMed.Models.ProductImage", b =>
-                {
-                    b.HasOne("MedifMed.Models.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("MedifMed.Models.ProductReview", b =>
-                {
-                    b.HasOne("MedifMed.Models.Product", "Product")
-                        .WithMany("ProductReviews")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("MedifMed.Models.Product", b =>
                 {
                     b.Navigation("ProductDetails");
-
-                    b.Navigation("ProductImages");
-
-                    b.Navigation("ProductReviews");
                 });
 #pragma warning restore 612, 618
         }

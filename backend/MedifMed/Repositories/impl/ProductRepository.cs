@@ -15,7 +15,7 @@ public class ProductRepository: IProductRepository
 
     public async Task<List<Product>> GetAllProductsAsync()
     {
-        var query = _context.Products.Include(p => p.ProductDetails);
+        var query = _context.Products.Include(p => p.ProductDetails).Include(p => p.Categories);
         return await query.ToListAsync();
 
     }
@@ -23,6 +23,7 @@ public class ProductRepository: IProductRepository
     {
         var product = await _context.Products
             .Include(p => p.ProductDetails)
+            .Include(p => p.Categories)
             .FirstOrDefaultAsync((p) => p.ProductId == id) ?? throw new Exception("Product not found.");
         return product;
     }

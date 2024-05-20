@@ -13,9 +13,12 @@ public class Product
     public int AvgRating { get; set; } = 0;
     [Column(TypeName = "decimal(18,2)")]
     public decimal Price { get; set; }
-    
+    public string Img { get; set; } = "";
     public DateTime? CreatedOn { get; set; }
     public DateTime UpdatedOn { get; set; } = DateTime.Now;
     public List<ProductDetail> ProductDetails { get; set; }
-    public List<Category>? Categories { get; set; }
+    public List<Category> Categories { get; set; } = [];
+    public List<ProductImage> ProductImages { get; set; } = [];
+    public List<ProductReview> ProductReviews { get; set; } = [];
+
 }

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using MedifMed.Dtos.ProductDetailDtos;
+using MedifMed.Dtos.Category;
 
 namespace MedifMed.Dtos.Product
 {
@@ -12,7 +13,8 @@ namespace MedifMed.Dtos.Product
         public string? Description { get; set; }
         public int AvgRating { get; set; } = 0;
         public decimal Price { get; set; }
-
-        public List<ProductDetailResponseDto> ProductDetails { get; set; } = []; // make a dto
+        public string Img { get; set; } = "";
+        public List<ProductDetailResponseDto> ProductDetails { get; set; } = []; 
+        public List<CategoryResponseDto> Categories { get; set; } = [];
     }
 }

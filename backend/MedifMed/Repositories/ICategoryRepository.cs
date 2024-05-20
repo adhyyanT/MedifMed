@@ -5,9 +5,11 @@ namespace MedifMed.Repositories
 {
     public interface ICategoryRepository
     {
-        Task<List<Category>> GetCategories();
-        Task<Category> GetCategory(Guid id);
-        Task<Category> GetCategoryByName(string name);
-        Task<Category> CreateCategory(CategoryRequestDto category1);
+        Task<List<Category>> GetCategoriesAsync();
+        Task<Category> GetCategoryAsync(Guid id);
+        Task<List<Product>> GetProductsByCategoryAsync(Guid id);
+        Task<Category?> GetCategoryByNameAsync(string name);
+        Task<Category> CreateCategoryAsync(CategoryRequestDto category1);
+        Task<Category> DeleteCategoryAsync(Guid id);
     }
 }

@@ -15,7 +15,9 @@ namespace MedifMed.Mappers
                 Name = product.Name,
                 Price = product.Price,
                 ProductDetails = product.ProductDetails.Select(d => d.ToProductDetailResponse()).ToList(),
-                ProductId = product.ProductId
+                ProductId = product.ProductId,
+                Categories = product.Categories.Select(c => c.ToCategoryResponseDto()).ToList(),
+                Img = product.Img
             };
         }
         public static ProductDetailResponseDto ToProductDetailResponse(this ProductDetail detail)
