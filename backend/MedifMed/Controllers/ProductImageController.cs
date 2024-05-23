@@ -1,6 +1,6 @@
 ﻿using MedifMed.Dtos.ProductImageDtos;
 using MedifMed.Mappers;
-using MedifMed.Repositories.impl;
+using MedifMed.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedifMed.Controllers
@@ -20,7 +20,7 @@ namespace MedifMed.Controllers
         {
             try
             {
-                var images = await _productImageRepo.GetProductImages(productId);
+                var images = await _productImageRepo.GetProductImagesAsync(productId);
                 return Ok(images.Select(i => i.ToProductImageResponseDto()));
             }
             catch(Exception e)
@@ -32,15 +32,21 @@ namespace MedifMed.Controllers
         [HttpPost("productimage")]
         public async Task<IActionResult> CreateProductImage([FromBody] ProductImageRequestDto productImage)
         {
-            var image = await _productImageRepo.CreateProductImage(productImage);
+            var image = await _productImageRepo.CreateProductImageAsync(productImage);
             return Ok(image.ToProductImageResponseDto());
         }
         [HttpPost("productimages")]
         public async Task<IActionResult> CreateProductImages([FromBody] List<ProductImageRequestDto> productImages)
         {
-            var images = await _productImageRepo.CreateProductImages(productImages);
+            var images = await _productImageRepo.CreateProductImagesAsync(productImages);
 
             return Ok(images.Select(i => i.ToProductImageResponseDto()).ToList());
+        }
+        [HttpPut("productimage/{productId}")]
+        public async Task<IActionResult> UpdateProductImagesAsync([FromBody] List<ProductImageRequestDto> productImages, [FromRoute] Guid productId)
+        {
+            var images = await _productImageRepo.UpdateProductImagesAsync(productImages, productId);
+            return Ok(images);
         }
     }
 }

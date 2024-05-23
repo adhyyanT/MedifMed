@@ -10,7 +10,8 @@ public class Product
     public string Name { get; set; } = string.Empty;
     [MaxLength(500)]
     public string? Description { get; set; }
-    public int AvgRating { get; set; } = 0;
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal AvgRating { get; set; }
     [Column(TypeName = "decimal(18,2)")]
     public decimal Price { get; set; }
     public string Img { get; set; } = "";
@@ -21,4 +22,8 @@ public class Product
     public List<ProductImage> ProductImages { get; set; } = [];
     public List<ProductReview> ProductReviews { get; set; } = [];
 
+    public override string ToString()
+    {
+        return $"{Name} {Description} {AvgRating} {Price} {Img}";
+    }
 }

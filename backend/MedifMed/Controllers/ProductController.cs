@@ -1,3 +1,4 @@
+using MedifMed.Dtos.Product;
 using MedifMed.Dtos.ProductDetailDtos;
 using MedifMed.Mappers;
 using MedifMed.Repositories;
@@ -39,6 +40,20 @@ public class ProductController(IProductRepository repo) : ControllerBase
     // post product
 
     // put product
+    [HttpPut("product/{productId}")]
+    public async Task<IActionResult> UpdateProduct([FromRoute] Guid productId, [FromBody] ProductRequestDto product)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+        try
+        {
+            var newProduct = await _productRepository.UpdateProductAsync(productId, product);
+            return Ok(newProduct.ToProductResponse());
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 
     // delete product
 

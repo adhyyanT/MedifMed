@@ -1,18 +1,24 @@
 ﻿using MedifMed.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using MedifMed.Dtos.ProductDetailDtos;
-using MedifMed.Dtos.Category;
 
 namespace MedifMed.Dtos.Product
 {
-    public class ProductResponseDto
+    public class ProductRequestDto
     {
-        public Guid ProductId { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string Name { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(500)]
         public string? Description { get; set; }
+
+        [Required]
         public decimal AvgRating { get; set; } = 0;
+        [Required]
         public decimal Price { get; set; }
+        [Required]
         public string Img { get; set; } = "";
+
     }
 }

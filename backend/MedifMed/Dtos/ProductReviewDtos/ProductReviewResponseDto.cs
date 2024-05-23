@@ -1,27 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MedifMed.Models
+namespace MedifMed.Dtos.ProductReviewDtos
 {
-    [Index(nameof(ProductId))]
-    public class ProductReview
+    public class ProductReviewResponseDto
     {
-        [Key]
+
         public Guid ProdutReviewId { get; set; }
-        [MaxLength(20)]
+
         public string Title { get; set; } = string.Empty;
-        [MaxLength(500)]
+
         public string Description { get; set; } = string.Empty;
         public Boolean IsGoodQuality { get; set; }
         public Boolean IsGoodResponse { get; set; }
-        public Boolean IsGoodDelivery{ get; set; }
-        [Required]
+        public Boolean IsGoodDelivery { get; set; }
+
         public int Rating { get; set; }
-        public Guid ProductId { get; set; }
-        public Product Product { get; set; }
 
         public DateTime? CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; } = DateTime.Now;
-
     }
 }
