@@ -1,0 +1,14 @@
+.imgContainer {
+	max-width: 20px;
+	max-height: 20px;
+}
+.scrollBottom {
+	box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.09);
+	background-color: var(--background);
+	transition: all 2s ease-in-out;
+}
+.scrollTop {
+	box-shadow: none;
+	background-color: var(--hero);
+	transition: all 1s ease-in-out;
+}
