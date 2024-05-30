@@ -22,20 +22,22 @@ const Navbar = () => {
 	// const scrollPosition = 10;
 	return (
 		<div
-			className={`sticky top-0 p-3 items-center flex justify-between  pl-8 pr-8 md:justify-around ${
+			className={`sticky top-0 p-3 items-center flex justify-between lg:gap-40  pl-8 pr-8 md:justify-around ${
 				scrollPosition > 0 ? styles.scrollBottom : styles.scrollTop
 			}`}
 		>
 			<div className="flex items-center w-40 justify-start gap-2 md:justify-between">
 				<div className="flex justify-center">
-					<Image
-						priority={true}
-						className="hover:cursor-pointer h-auto w-auto"
-						src={"/medif-medical-no-bg.png"}
-						alt={"Logo"}
-						width={40}
-						height={40}
-					/>
+					<Link href={"/"} className="md:block hover:cursor-pointer">
+						<Image
+							priority={true}
+							className="hover:cursor-pointer h-auto w-auto"
+							src={"/medif-medical-no-bg.png"}
+							alt={"Logo"}
+							width={40}
+							height={40}
+						/>
+					</Link>
 				</div>
 				<Link
 					href={"/"}
