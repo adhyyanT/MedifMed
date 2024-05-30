@@ -41,6 +41,9 @@
 		--ring: #30363c;
 
 		--radius: 0.5rem;
+
+		--text-color: #3f4144;
+		--font: Montserrat;
 	}
 
 	.dark {

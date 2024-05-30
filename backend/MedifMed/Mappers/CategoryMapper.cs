@@ -10,7 +10,8 @@ namespace MedifMed.Mappers
             return new CategoryResponseDto()
             {
                 Name = category.Name,
-                CategoryId = category.CategoryId
+                CategoryId = category.CategoryId,
+                CategoryImage = category.CategoryImage
             };
         }
     }

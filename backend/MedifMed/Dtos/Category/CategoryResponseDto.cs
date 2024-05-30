@@ -8,5 +8,6 @@ namespace MedifMed.Dtos.Category
 
         [MaxLength(50)]
         public required string Name { get; set; }
+        public string CategoryImage { get; set; } = string.Empty;
     }
 }

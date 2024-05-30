@@ -49,7 +49,7 @@ namespace MedifMed.Repositories.impl
         {
             var opCategory = await GetCategoryByNameAsync(category.Name);
             if (opCategory != null) throw new Exception($"{category.Name} already exists.");
-            var categoryResponse = new Category() { Name = category.Name.Trim().ToLower(), CreatedOn = DateTime.Now };
+            var categoryResponse = new Category() { Name = category.Name.Trim().ToLower(), CreatedOn = DateTime.Now,CategoryImage = category.CategoryImage };
             await _context.Categories.AddAsync(categoryResponse);
             await _context.SaveChangesAsync();
             return categoryResponse;

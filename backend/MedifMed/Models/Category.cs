@@ -8,7 +8,7 @@ namespace MedifMed.Models
 
         [MaxLength(50)]
         public required string Name { get; set; }
-
+        public string CategoryImage { get; set; } = string.Empty;
         public List<Product> Products { get; set; } = [];
 
         public DateTime? CreatedOn { get; set; }
