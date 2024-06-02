@@ -17,7 +17,13 @@ export default async function Home() {
 	return (
 		<div className="w-full">
 			<Hero></Hero>
-			<div className="flex md:max-w-[unset]  px-7 md:px-[10rem] lg:px-[14rem]  w-full justify-center">
+			<div className="flex md:max-w-[unset]  px-7 md:px-[8rem] lg:px-[20rem]  w-full justify-center">
+				<div className="mt-[2rem] w-full">
+					<Header title="Shop by categories" />
+					<Carousel data={categories} />
+				</div>
+			</div>
+			<div className="flex md:max-w-[unset]  px-7 md:px-[8rem] lg:px-[20rem]  w-full justify-center">
 				<div className="mt-[2rem] w-full">
 					<Header title="Shop by categories" />
 					<Carousel data={categories} />

@@ -14,6 +14,8 @@ public class Product
     public decimal AvgRating { get; set; }
     [Column(TypeName = "decimal(18,2)")]
     public decimal Price { get; set; }
+    [MaxLength(50)]
+    public string SmallestUnit { get; set; } = "Piece";
     public string Img { get; set; } = "";
     public DateTime? CreatedOn { get; set; }
     public DateTime UpdatedOn { get; set; } = DateTime.Now;

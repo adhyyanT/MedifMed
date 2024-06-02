@@ -15,7 +15,8 @@ namespace MedifMed.Mappers
                 Name = product.Name,
                 Price = product.Price,
                 ProductId = product.ProductId,
-                Img = product.Img
+                Img = product.Img,
+                SmallestUnit = product.SmallestUnit
             };
         }
         public static ProductDetailResponseDto ToProductDetailResponse(this ProductDetail detail)

@@ -1,0 +1,22 @@
+.hideScroll::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hideScroll {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+.rightBtn {
+	cursor: pointer;
+	position: absolute;
+	top: 38%;
+	transform: translateY(-50%);
+	z-index: 2;
+	right: -100px;
+	background-color: var(--colors-neutralDark800);
+	height: var(--sizes-5);
+	width: var(--sizes-5);
+	border: 0px;
+	border-radius: 50%;
+}

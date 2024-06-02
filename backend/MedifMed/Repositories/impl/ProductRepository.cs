@@ -10,10 +10,13 @@ namespace MedifMed.Repositories.impl;
 public class ProductRepository: IProductRepository
 {
     private readonly ApplicationDBContext _context;
-    public ProductRepository(ApplicationDBContext context)
+    private readonly ICategoryRepository _categoryRepo;
+    public ProductRepository(ApplicationDBContext context, ICategoryRepository categoryRepo)
     {
         this._context = context;
+        _categoryRepo = categoryRepo;
     }
+
 
     public async Task<List<Product>> GetAllProductsAsync()
     {
@@ -27,22 +30,7 @@ public class ProductRepository: IProductRepository
             .FirstOrDefaultAsync((p) => p.ProductId == id) ?? throw new Exception("Product not found.");
         return product;
     }
-    public async Task<ProductDetail> AddProductDetailAsync(ProductDetailCreateRequest productDetail,
-        Guid productId)
-    {
-        var product = await GetProductByIdAsync(productId);
-        ProductDetail details = new ProductDetail
-        {
-            Description = productDetail.Description,
-            CreatedOn = DateTime.Now,
-            Title = productDetail.Title,
-            ProductId = productId,
 
-        };
-        product.ProductDetails.Add(details);
-        await _context.SaveChangesAsync();
-        return details;
-    }
 
     public async Task<Product> UpdateProductAsync(Guid id,ProductRequestDto product)
     {
@@ -53,8 +41,33 @@ public class ProductRepository: IProductRepository
         productOp.Description = product.Description;
         productOp.Img = product.Img;
         productOp.AvgRating = product.AvgRating;
-        Console.WriteLine(productOp.ToString());
+        productOp.SmallestUnit = product.SmallestUnit;
         await _context.SaveChangesAsync();
         return productOp;
+    }
+    public async Task<Product> CreateProduct(ProductCreateRequestDto productReq)
+    {
+        IEnumerable<Category> categories = categories = await _context.Categories.Where(c => productReq.Categories.Contains(c.CategoryId)).ToListAsync();
+
+
+        if(categories.Count() != productReq.Categories.Count())
+        {
+            throw new Exception($"Categories {string.Join(",", productReq.Categories.Except(categories.Select(c => c.CategoryId)))} not found");
+        }
+        
+        var product = new Product()
+        {
+            AvgRating = 0,
+            CreatedOn = DateTime.Now,
+            Description = productReq.Description,
+            Img = productReq.Img,
+            Name = productReq.Name,
+            Price = productReq.Price,
+            Categories = categories.ToList(),
+            SmallestUnit = productReq.SmallestUnit
+        };
+        await _context.Products.AddAsync(product);
+        await _context.SaveChangesAsync();
+        return product;
     }
 }

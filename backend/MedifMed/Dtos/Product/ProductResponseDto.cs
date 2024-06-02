@@ -12,6 +12,7 @@ namespace MedifMed.Dtos.Product
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
         public decimal AvgRating { get; set; } = 0;
+        public string SmallestUnit { get; set; } = string.Empty;
         public decimal Price { get; set; }
         public string Img { get; set; } = "";
     }

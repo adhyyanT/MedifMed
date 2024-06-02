@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MedifMed")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dddbc0b9f00222ceb6730e3beb1ecf7d3ea56b6b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d45b93ccae2e41ba5a77c62da07e89dbd4ad5ada")]
 [assembly: System.Reflection.AssemblyProductAttribute("MedifMed")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MedifMed")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

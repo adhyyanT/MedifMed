@@ -23,7 +23,7 @@ public class ProductController(IProductRepository repo) : ControllerBase
     }
 
     // Get single product
-    [HttpGet("{productId}")]
+    [HttpGet("product/{productId}")]
     public async Task<IActionResult> GetProduct([FromRoute] Guid productId)
     {
         try
@@ -38,6 +38,21 @@ public class ProductController(IProductRepository repo) : ControllerBase
     }
 
     // post product
+    [HttpPost("product")]
+    public async Task<IActionResult> CreateProduct([FromBody] ProductCreateRequestDto productReq)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+        try
+        {
+            var product = await _productRepository.CreateProduct(productReq);
+            return Ok(product.ToProductResponse());
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
 
     // put product
     [HttpPut("product/{productId}")]
@@ -56,27 +71,5 @@ public class ProductController(IProductRepository repo) : ControllerBase
     }
 
     // delete product
-
-    // get details for productID
-
-    // post details for productId
-    [HttpPost("{productId}/details")]
-    public async Task<IActionResult> AddProductDetail([FromBody] ProductDetailCreateRequest productDetail,[FromRoute] Guid productId)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-        try
-        {
-            var detail = await _productRepository.AddProductDetailAsync(productDetail, productId);
-            
-            return Created($"{Request.Scheme}://{Request.Host}/api/productdetail/{detail.ProductDetailId}", detail.ToProductDetailResponse());
-            
-        }
-        catch(Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-    }
+    
 }
