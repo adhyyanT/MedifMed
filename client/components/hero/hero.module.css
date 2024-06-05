@@ -1,5 +1,5 @@
 .heroFont {
-	font-size: 82px;
+	font-size: 70px;
 	font-family: "Montserrat", sans-serif;
 	font-weight: 500;
 	font-style: normal;
@@ -10,7 +10,7 @@
 		font-family: "Montserrat", sans-serif;
 		font-optical-sizing: auto;
 		font-weight: 500;
-		font-size: 30px;
+		font-size: 50px;
 		color: #3f4144;
 	}
 }
@@ -19,7 +19,7 @@
 		font-family: "Montserrat", sans-serif;
 		font-optical-sizing: auto;
 		font-weight: 500;
-		font-size: 25px;
+		font-size: 35px;
 		color: #3f4144;
 	}
 }

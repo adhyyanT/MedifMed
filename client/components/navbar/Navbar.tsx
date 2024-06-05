@@ -19,7 +19,6 @@ const navLinks: NavlinkProps[] = [
 
 const Navbar = () => {
 	const scrollPosition = useScrollPosition();
-	// const scrollPosition = 10;
 	return (
 		<div
 			className={`sticky top-0 p-3 items-center flex justify-between lg:gap-40  pl-8 pr-8 md:justify-around ${

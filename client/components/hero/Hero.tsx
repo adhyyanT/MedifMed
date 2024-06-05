@@ -9,9 +9,11 @@ const TRUST_CERTIFICATE =
 
 const Hero = () => {
 	return (
-		<div className="flex flex-col gap-14 justify-start pt-32 w-full bg-[var(--hero)] items-center">
-			<div>
-				<p className={` ${styles.heroFont}`}>What are you looking for?</p>
+		<div className="flex flex-col min-h-[calc(100vh-0.75rem-0.75rem-40px)] gap-12 pt-12 lg:gap-20 lg:pt-20 xl:gap-24  xl:pt-24 justify-start w-full bg-[var(--hero)] items-center">
+			<div className="w-[90%]">
+				<p className={` ${styles.heroFont} text-center`}>
+					Medical equipments at your finger tips
+				</p>
 			</div>
 			<div
 				className={`${styles.form} flex max-w-sm md:max-w-none md:w-[40%] items-center space-x-2`}
@@ -29,7 +31,7 @@ const Hero = () => {
 					Search
 				</Button>
 			</div>
-			<div className="flex flex-col md:flex-row gap-8 md:gap-60 items-center font-family: Montserrat, sans-serif font-medium text-[#3f4144]">
+			<div className="flex flex-col md:flex-row gap-8 md:gap-60 items-center">
 				<a
 					href={TRUST_CERTIFICATE}
 					target="_blank"
@@ -41,7 +43,9 @@ const Hero = () => {
 						height={70}
 						width={70}
 					></Image>
-					<p>IndiaMART Trust Seal Verified</p>
+					<p className="font-family: Montserrat, sans-serif font-medium text-[#3f4144]">
+						IndiaMART Trust Seal Verified
+					</p>
 				</a>
 				<a
 					href={TRUST_CERTIFICATE}
@@ -61,7 +65,9 @@ const Hero = () => {
 					>
 						<polyline points="83 20 38 70 17 50"></polyline>
 					</svg>
-					<p>IndiaMART Verified Exporter</p>
+					<p className="font-family: Montserrat, sans-serif font-medium text-[#3f4144]">
+						IndiaMART Verified Exporter
+					</p>
 				</a>
 			</div>
 			<div>

@@ -1,0 +1,7 @@
+.form{
+    border: 1px solid var(--hero);
+    padding: 2rem;
+    border-radius: 30px;
+    box-shadow: 8px 8px 50px lightgray;
+    flex: 2 1 0px;
+}
