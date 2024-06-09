@@ -1,0 +1,11 @@
+:hover.card {
+	border: 1px solid var(--accent-foreground);
+	border-radius: 0.75rem;
+}
+.card {
+	border: 1px solid transparent;
+}
+.title {
+	color: rgb(79, 88, 94);
+	font-weight: 700;
+}

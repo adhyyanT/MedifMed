@@ -1,13 +1,11 @@
 .heroFont {
-	font-size: 70px;
-	font-family: "Montserrat", sans-serif;
+	font-size: 55px;
 	font-weight: 500;
 	font-style: normal;
 	color: #3f4144;
 }
 @media screen and (max-width: 1000px) {
 	.heroFont {
-		font-family: "Montserrat", sans-serif;
 		font-optical-sizing: auto;
 		font-weight: 500;
 		font-size: 50px;
@@ -16,7 +14,6 @@
 }
 @media screen and (max-width: 480px) {
 	.heroFont {
-		font-family: "Montserrat", sans-serif;
 		font-optical-sizing: auto;
 		font-weight: 500;
 		font-size: 35px;

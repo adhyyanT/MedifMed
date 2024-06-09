@@ -16,9 +16,9 @@ public class ProductController(IProductRepository repo) : ControllerBase
 
     // Get all products with pagination
     [HttpGet]
-    public async Task<IActionResult> GetAllProducts()
+    public async Task<IActionResult> GetAllProducts([FromQuery]int page = 1, [FromQuery]int sort = 1)
     {
-        var products = await _productRepository.GetAllProductsAsync();
+        var products = await _productRepository.GetAllProductsAsync(page,sort);
         return Ok(products.Select(p => p.ToProductResponse()).ToList());
     }
 

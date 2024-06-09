@@ -1,3 +1,4 @@
+import { getCategories } from "@/api/category";
 import Carousel from "@/components/carousel/Carousel";
 import ContactCard from "@/components/contactCard/ContactCard";
 import Footer from "@/components/footer/Footer";
@@ -6,13 +7,6 @@ import Hero from "@/components/hero/Hero";
 import ReachOutForm from "@/components/reachOutForm/ReachOutForm";
 
 import { Category } from "@/types/Category";
-
-const getCategories = async () => {
-	const resp = await fetch("http://localhost:5179/api/category/categories");
-	return resp.json();
-
-	// return t as Category[];
-};
 
 export default async function Home() {
 	const categories: Category[] = await getCategories();
@@ -32,9 +26,9 @@ export default async function Home() {
 					<Carousel data={categories} />
 				</div>
 			</div>
-			<div className="flex md:max-w-[unset]  md:px-[8rem] lg:px-[12rem] xl:px-[15rem]  w-full justify-center">
+			<div className="flex md:max-w-[unset]  md:px-[8rem] lg:px-[12rem] xl:px-[15rem]  w-full justify-center min-w-[290px]">
 				<div className="mt-[2rem] w-full">
-					<div className="flex justify-center pt-5 gap-3">
+					<div className="flex flex-col p-3 xl:flex-row justify-center pt-5 gap-3">
 						<ContactCard />
 						<ReachOutForm title="Looking for something specific?" />
 					</div>

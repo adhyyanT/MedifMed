@@ -1,10 +1,8 @@
 using MedifMed.Database;
 using MedifMed.Dtos.Product;
-using MedifMed.Dtos.ProductDetailDtos;
-using MedifMed.Dtos.ProductImageDtos;
 using MedifMed.Models;
 using Microsoft.EntityFrameworkCore;
-
+using MedifMed.Types;
 namespace MedifMed.Repositories.impl;
 
 public class ProductRepository: IProductRepository
@@ -18,9 +16,65 @@ public class ProductRepository: IProductRepository
     }
 
 
-    public async Task<List<Product>> GetAllProductsAsync()
+    public async Task<List<Product>> GetAllProductsAsync(int page, int sort)
     {
-        var query = _context.Products;
+        int pageSize = Constant.PRODUCT_PAGE_SIZE;
+        SortBy sortColumn = (SortBy)sort;
+        IQueryable<Product> query;
+
+        switch (sortColumn)
+        {
+            case SortBy.rating:
+                //query = _context.Products
+                //    .Where(p => p.Categories.Any(c => c.CategoryId == new Guid())).
+                //OrderBy(p => p.AvgRating)
+                //    .Skip((page - 1) * pageSize)
+                //    .Take(pageSize);
+                query = _context.Products
+                .OrderBy(p => p.AvgRating)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize);
+                    
+                break;
+            case SortBy.name:
+                query = _context.Products.
+                    OrderBy(p => p.Name)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize);
+                break;
+
+            case SortBy.price:
+                query = _context.Products.
+                   OrderBy(p => p.Price)
+                   .Skip((page - 1) * pageSize)
+                   .Take(pageSize);
+                break;
+            case SortBy.rating_desc:
+                query = _context.Products.
+                   OrderByDescending(p => p.AvgRating)
+                   .Skip((page - 1) * pageSize)
+                   .Take(pageSize);
+                break;
+            case SortBy.name_desc:
+                query = _context.Products.
+                   OrderByDescending(p => p.Name)
+                   .Skip((page - 1) * pageSize)
+                   .Take(pageSize);
+                break;
+            case SortBy.price_desc:
+                query = _context.Products.
+                   OrderByDescending(p => p.Price)
+                   .Skip((page - 1) * pageSize)
+                   .Take(pageSize);
+                break;
+            default:
+                query = _context.Products.
+                   OrderBy(p => p.Name)
+                   .Skip((page - 1) * pageSize)
+                   .Take(pageSize);
+                break;
+        }
+        
         return await query.ToListAsync();
 
     }
@@ -47,7 +101,7 @@ public class ProductRepository: IProductRepository
     }
     public async Task<Product> CreateProduct(ProductCreateRequestDto productReq)
     {
-        IEnumerable<Category> categories = categories = await _context.Categories.Where(c => productReq.Categories.Contains(c.CategoryId)).ToListAsync();
+        IEnumerable<Category> categories = await _context.Categories.Where(c => productReq.Categories.Contains(c.CategoryId)).ToListAsync();
 
 
         if(categories.Count() != productReq.Categories.Count())

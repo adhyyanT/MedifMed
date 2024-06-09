@@ -17,26 +17,18 @@ import { Input } from "@/components/ui/input";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import { Textarea } from "../ui/textarea";
 import styles from "./reachOutForm.module.css";
+import { useToast } from "../ui/use-toast";
+import { reachOutFormSchema } from "@/types/UserReachOutForm";
 
 type ReachOutFormProp = {
 	title: string;
 };
 
-const formSchema = z.object({
-	firstName: z.string().max(15).min(1, { message: "First name is required" }),
-	lastName: z.string().max(15).min(1, { message: "Last name is required." }),
-	email: z.string().email(),
-	phoneNumber: z
-		.string()
-		.length(10, { message: "Please enter your 10 digit number" }),
-	message: z
-		.string()
-		.max(500, { message: "Your message can only have upto 500 characters" })
-		.min(10, { message: "Your message must have atleast 10 characters" }),
-});
 const ReachOutForm = ({ title }: ReachOutFormProp) => {
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const { toast } = useToast();
+
+	const form = useForm<z.infer<typeof reachOutFormSchema>>({
+		resolver: zodResolver(reachOutFormSchema),
 		defaultValues: {
 			email: "",
 			firstName: "",
@@ -47,10 +39,14 @@ const ReachOutForm = ({ title }: ReachOutFormProp) => {
 	});
 
 	// 2. Define a submit handler.
-	function onSubmit(values: z.infer<typeof formSchema>) {
+	function onSubmit(values: z.infer<typeof reachOutFormSchema>) {
 		// Do something with the form values.
 		// ✅ This will be type-safe and validated.
 		console.log(values);
+		toast({
+			description: "Your message has been sent.",
+			variant: "default",
+		});
 	}
 
 	return (
@@ -102,7 +98,6 @@ const ReachOutForm = ({ title }: ReachOutFormProp) => {
 							<FormControl>
 								<Input placeholder="example@email.com" {...field} />
 							</FormControl>
-							{/* <FormDescription>This is your email.</FormDescription> */}
 							<FormMessage />
 						</FormItem>
 					)}
@@ -138,6 +133,12 @@ const ReachOutForm = ({ title }: ReachOutFormProp) => {
 					className=" w-full bg-[var(--accent-foreground)] text-[var(--background)]"
 					type="submit"
 					variant={"outline"}
+					onClick={() => {
+						return toast({
+							title: "Uh oh! Something went wrong.",
+							description: "There was a problem with your request.",
+						});
+					}}
 				>
 					Send Message
 					<div className="pl-2">

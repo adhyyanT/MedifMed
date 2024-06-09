@@ -5,6 +5,7 @@ import React from "react";
 import Navlink from "./navlink/Navlink";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
 import styles from "./navbar.module.css";
+import { usePathname } from "next/navigation";
 
 const navLinks: NavlinkProps[] = [
 	{
@@ -18,11 +19,15 @@ const navLinks: NavlinkProps[] = [
 ];
 
 const Navbar = () => {
+	const path = usePathname();
+
 	const scrollPosition = useScrollPosition();
 	return (
 		<div
-			className={`sticky top-0 p-3 items-center flex justify-between lg:gap-40  pl-8 pr-8 md:justify-around ${
-				scrollPosition > 0 ? styles.scrollBottom : styles.scrollTop
+			className={`z-20 sticky top-0 p-3 items-center flex justify-between lg:gap-40  pl-8 pr-8 md:justify-around ${
+				scrollPosition > 0 || path !== "/"
+					? styles.scrollBottom
+					: styles.scrollTop
 			}`}
 		>
 			<div className="flex items-center w-40 justify-start gap-2 md:justify-between">

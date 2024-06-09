@@ -9,9 +9,9 @@ const TRUST_CERTIFICATE =
 
 const Hero = () => {
 	return (
-		<div className="flex flex-col min-h-[calc(100vh-0.75rem-0.75rem-40px)] gap-12 pt-12 lg:gap-20 lg:pt-20 xl:gap-24  xl:pt-24 justify-start w-full bg-[var(--hero)] items-center">
+		<div className="flex flex-col min-h-[calc(100vh-0.75rem-0.75rem-40px)] gap-10 pt-12 lg:gap-20 lg:pt-20 xl:gap-24  xl:pt-24 justify-start w-full bg-[var(--hero)] items-center">
 			<div className="w-[90%]">
-				<p className={` ${styles.heroFont} text-center`}>
+				<p className={` ${styles.heroFont} font-montserrat text-center`}>
 					Medical equipments at your finger tips
 				</p>
 			</div>
@@ -38,19 +38,20 @@ const Hero = () => {
 					className="pt-[11px] flex flex-col gap-8 items-center"
 				>
 					<Image
+						className="hover:cursor-pointer h-auto w-auto"
 						src={"/guarantee-award-icon.png"}
 						alt="certified"
 						height={70}
 						width={70}
 					></Image>
-					<p className="font-family: Montserrat, sans-serif font-medium text-[#3f4144]">
+					<p className="font-medium text-[#3f4144]">
 						IndiaMART Trust Seal Verified
 					</p>
 				</a>
 				<a
 					href={TRUST_CERTIFICATE}
 					target="_blank"
-					className="flex flex-col gap-7 items-center"
+					className="flex flex-col gap-0 lg:gap-7 items-center "
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -62,10 +63,11 @@ const Hero = () => {
 						strokeWidth="12"
 						strokeLinecap="round"
 						strokeLinejoin="round"
+						className="h-[135px] w-[135px]"
 					>
 						<polyline points="83 20 38 70 17 50"></polyline>
 					</svg>
-					<p className="font-family: Montserrat, sans-serif font-medium text-[#3f4144]">
+					<p className="font-medium text-[#3f4144]">
 						IndiaMART Verified Exporter
 					</p>
 				</a>

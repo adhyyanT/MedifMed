@@ -8,7 +8,7 @@ public class Product
     public Guid ProductId { get; set; }
     [MaxLength(100)]
     public string Name { get; set; } = string.Empty;
-    [MaxLength(500)]
+    [MaxLength(2000)]
     public string? Description { get; set; }
     [Column(TypeName = "decimal(18,2)")]
     public decimal AvgRating { get; set; }
