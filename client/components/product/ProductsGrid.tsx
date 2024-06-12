@@ -7,7 +7,7 @@ const ProductsGrid = async () => {
 	const products = await getProducts();
 	return (
 		<div className="flex flex-col gap-3">
-			<Header title="Products" showSeparator={false} />
+			<Header className="text-3xl" title="Products" showSeparator={false} />
 			<div className="grid grid-cols-2 auto-rows-[1fr] md:grid-cols-3 gap-3">
 				{products.map((d, index) => (
 					<ProductCard key={index} product={d} />

@@ -44,6 +44,8 @@
 
 		--text-color: #3f4144;
 		--font: Montserrat;
+
+		--paddingTop: "pt-[calc(1rem+1rem+2rem+2rem+40px)]";
 	}
 
 	.dark {

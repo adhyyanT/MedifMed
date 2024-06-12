@@ -76,6 +76,9 @@ const config = {
 				openSans: ["var(--font-open-sans)"],
 				montserrat: ["var(--font-montserrat)"],
 			},
+			spacing: {
+				"nav-padding": "calc(1rem + 1rem + 2rem + 2rem + 40px)",
+			},
 		},
 	},
 	plugins: [require("tailwindcss-animate")],

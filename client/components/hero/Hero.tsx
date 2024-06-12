@@ -9,7 +9,8 @@ const TRUST_CERTIFICATE =
 
 const Hero = () => {
 	return (
-		<div className="flex flex-col min-h-[calc(100vh-0.75rem-0.75rem-40px)] gap-10 pt-12 lg:gap-20 lg:pt-20 xl:gap-24  xl:pt-24 justify-start w-full bg-[var(--hero)] items-center">
+		// <div className="flex flex-col min-h-[calc(100vh-0.75rem-0.75rem-40px)] gap-10 pt-12 lg:gap-20 lg:pt-20 xl:gap-24  xl:pt-24 justify-start w-full bg-[var(--hero)] items-center">
+		<div className="pt-nav-padding flex flex-col h-screen gap-10 lg:gap-20 xl:gap-24 justify-start  bg-[var(--hero)] items-center">
 			<div className="w-[90%]">
 				<p className={` ${styles.heroFont} font-montserrat text-center`}>
 					Medical equipments at your finger tips

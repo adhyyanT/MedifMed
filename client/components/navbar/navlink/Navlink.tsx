@@ -14,7 +14,7 @@ const Navlink = ({ navLinks }: navLinkProp) => {
 					<Button
 						key={index}
 						variant={"outline"}
-						className="bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]"
+						className="border-black"
 						asChild
 					>
 						<Link href={link.href}>{link.name} </Link>
