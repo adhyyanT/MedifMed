@@ -16,10 +16,14 @@ public class ProductController(IProductRepository repo) : ControllerBase
 
     // Get all products with pagination
     [HttpGet]
-    public async Task<IActionResult> GetAllProducts([FromQuery]int page = 1, [FromQuery]int sort = 1)
+    public async Task<IActionResult> GetAllProducts([FromQuery]int page = 1, [FromQuery]int sort = 6, [FromQuery]Guid? categoryId = null)
     {
-        var products = await _productRepository.GetAllProductsAsync(page,sort);
-        return Ok(products.Select(p => p.ToProductResponse()).ToList());
+        Console.WriteLine(categoryId);
+        var pagedResponse = await _productRepository.GetAllProductsAsync(page,sort,categoryId);
+        return Ok(new {
+            products = pagedResponse.products.Select(p => p.ToProductResponse()),
+            totalPages = pagedResponse.count
+        });
     }
 
     // Get single product

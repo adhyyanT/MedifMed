@@ -3,9 +3,10 @@ using MedifMed.Dtos.Product;
 using MedifMed.Models;
 using Microsoft.EntityFrameworkCore;
 using MedifMed.Types;
+using System.Linq.Expressions;
 namespace MedifMed.Repositories.impl;
 
-public class ProductRepository: IProductRepository
+public class ProductRepository : IProductRepository
 {
     private readonly ApplicationDBContext _context;
     private readonly ICategoryRepository _categoryRepo;
@@ -15,67 +16,55 @@ public class ProductRepository: IProductRepository
         _categoryRepo = categoryRepo;
     }
 
+    private void _pagedProducts<T>(int pageSize, int page, Guid? categoryId,Expression<Func<Product,T>> orderBy,bool asc, out int totalPages,out IQueryable<Product> pagedItemsQuery)
+    {
+        var query = categoryId == null ? _context.Products : (_context.Products
+                    .Include(p => p.Categories)
+                    .Where(p => p.Categories.Any(c => c.CategoryId == categoryId)));
 
-    public async Task<List<Product>> GetAllProductsAsync(int page, int sort)
+        var orderedQuery = asc ? query.OrderBy(orderBy) : query.OrderByDescending(orderBy);
+
+        var totalItems = orderedQuery.Count();
+        totalPages = (int)Math.Ceiling((double)totalItems / pageSize); ;
+        pagedItemsQuery = orderedQuery.Skip((page - 1) * pageSize).Take(pageSize);
+
+    }
+    public async Task<ProductPagedReponseDto> GetAllProductsAsync(int page, int sort, Guid? categoryId)
     {
         int pageSize = Constant.PRODUCT_PAGE_SIZE;
+        var totalPages = 0;
         SortBy sortColumn = (SortBy)sort;
         IQueryable<Product> query;
-
         switch (sortColumn)
         {
             case SortBy.rating:
-                //query = _context.Products
-                //    .Where(p => p.Categories.Any(c => c.CategoryId == new Guid())).
-                //OrderBy(p => p.AvgRating)
-                //    .Skip((page - 1) * pageSize)
-                //    .Take(pageSize);
-                query = _context.Products
-                .OrderBy(p => p.AvgRating)
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize);
-                    
+                _pagedProducts<decimal>(pageSize, page, categoryId, (p) => p.AvgRating, true, out totalPages, out query);
                 break;
             case SortBy.name:
-                query = _context.Products.
-                    OrderBy(p => p.Name)
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize);
+                _pagedProducts<string>(pageSize, page, categoryId, (p) => p.Name, true, out totalPages, out query);
                 break;
-
             case SortBy.price:
-                query = _context.Products.
-                   OrderBy(p => p.Price)
-                   .Skip((page - 1) * pageSize)
-                   .Take(pageSize);
+                _pagedProducts<decimal>(pageSize, page, categoryId, (p) => p.Price, true, out totalPages, out query);
                 break;
             case SortBy.rating_desc:
-                query = _context.Products.
-                   OrderByDescending(p => p.AvgRating)
-                   .Skip((page - 1) * pageSize)
-                   .Take(pageSize);
+                _pagedProducts<decimal>(pageSize, page, categoryId, (p) => p.AvgRating,false,out totalPages,out query);
                 break;
             case SortBy.name_desc:
-                query = _context.Products.
-                   OrderByDescending(p => p.Name)
-                   .Skip((page - 1) * pageSize)
-                   .Take(pageSize);
+                _pagedProducts<string>(pageSize, page, categoryId, (p) => p.Name, false, out totalPages, out query);
                 break;
             case SortBy.price_desc:
-                query = _context.Products.
-                   OrderByDescending(p => p.Price)
-                   .Skip((page - 1) * pageSize)
-                   .Take(pageSize);
+                _pagedProducts<decimal>(pageSize, page, categoryId, (p) => p.Price, false, out totalPages, out query);
                 break;
             default:
-                query = _context.Products.
-                   OrderBy(p => p.Name)
-                   .Skip((page - 1) * pageSize)
-                   .Take(pageSize);
+                _pagedProducts<decimal>(pageSize, page, categoryId, (p) => p.AvgRating, false, out totalPages, out query);
                 break;
         }
-        
-        return await query.ToListAsync();
+        var pagedProducts = await query.ToListAsync();
+        return new ProductPagedReponseDto()
+        {
+            products = pagedProducts,
+            count = totalPages
+        };
 
     }
     public async Task<Product> GetProductByIdAsync(Guid id)
@@ -86,7 +75,7 @@ public class ProductRepository: IProductRepository
     }
 
 
-    public async Task<Product> UpdateProductAsync(Guid id,ProductRequestDto product)
+    public async Task<Product> UpdateProductAsync(Guid id, ProductRequestDto product)
     {
         var productOp = await GetProductByIdAsync(id);
         productOp.UpdatedOn = DateTime.Now;
@@ -104,11 +93,11 @@ public class ProductRepository: IProductRepository
         IEnumerable<Category> categories = await _context.Categories.Where(c => productReq.Categories.Contains(c.CategoryId)).ToListAsync();
 
 
-        if(categories.Count() != productReq.Categories.Count())
+        if (categories.Count() != productReq.Categories.Count())
         {
             throw new Exception($"Categories {string.Join(",", productReq.Categories.Except(categories.Select(c => c.CategoryId)))} not found");
         }
-        
+
         var product = new Product()
         {
             AvgRating = 0,

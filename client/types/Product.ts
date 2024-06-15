@@ -1,3 +1,7 @@
+export type PaginatedProducts = {
+	products: Product[];
+	totalPages: number;
+};
 export type Product = {
 	productId: string;
 	name: string;

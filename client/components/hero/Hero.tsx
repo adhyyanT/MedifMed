@@ -10,21 +10,31 @@ const TRUST_CERTIFICATE =
 const Hero = () => {
 	return (
 		// <div className="flex flex-col min-h-[calc(100vh-0.75rem-0.75rem-40px)] gap-10 pt-12 lg:gap-20 lg:pt-20 xl:gap-24  xl:pt-24 justify-start w-full bg-[var(--hero)] items-center">
-		<div className="pt-nav-padding flex flex-col h-screen gap-10 lg:gap-20 xl:gap-24 justify-start  bg-[var(--hero)] items-center">
+		<div className="pt-[calc(1rem+1rem+0.75rem+0.75rem+40px)] md:pt-nav-padding flex flex-col h-screen gap-10 lg:gap-20 xl:gap-24 justify-start  bg-[var(--hero)] items-center">
 			<div className="w-[90%]">
-				<p className={` ${styles.heroFont} font-montserrat text-center`}>
+				<p className={` ${styles.heroFont}  font-montserrat text-center`}>
 					Medical equipments at your finger tips
 				</p>
 			</div>
+			{/* <div className={`${styles.container}`}>
+				<div className={styles.searchContainer}>
+					<input className={styles.input} type="text" />
+					<svg viewBox="0 0 24 24" className={styles.search__icon}>
+						<g>
+							<path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+						</g>
+					</svg>
+				</div>
+			</div> */}
 			<div
-				className={`${styles.form} flex max-w-sm md:max-w-none md:w-[40%] items-center space-x-2`}
+				className={`${styles.form} flex justify-between max-w-sm md:max-w-none md:w-[40%] items-center space-x-2`}
 			>
-				{/* Implement scroll fade away text animation */}
 				<Input
-					className="border-none shadow-none"
+					className={`${styles.text} border-none shadow-none`}
 					type="text"
-					placeholder="Search for products"
+					placeholder="Search for products..."
 				/>
+
 				<Button
 					className="p-5 text-[var(--primary-foreground)] border-none shadow-none hover:bg-[var(--accent-foreground)] bg-[var(--accent-foreground)] rounded-[50px]"
 					type="submit"

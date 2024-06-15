@@ -1,0 +1,16 @@
+.button {
+	/* border: 1px lid black; */
+	width: 100%;
+	background-color: white;
+	border-radius: 0;
+	z-index: 100;
+}
+.button:active {
+	background-color: white;
+}
+.button .left {
+	border-right: 1px solid #efefef;
+}
+.button .right {
+	border-right: 1px solid #efefef;
+}

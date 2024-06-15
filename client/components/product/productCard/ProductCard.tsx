@@ -36,7 +36,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 							{product.name}
 						</div>
 					</CardContent>
-					<CardFooter className="flex px-6  items-start flex-col">
+					<CardFooter className="flex px-6 gap-3 items-start flex-col">
 						<div className="flex ">
 							{product.avgRating > 0 &&
 								Array.from(Array(Math.floor(product.avgRating))).map(
