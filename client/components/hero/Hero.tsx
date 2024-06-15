@@ -27,7 +27,7 @@ const Hero = () => {
 				</div>
 			</div> */}
 			<div
-				className={`${styles.form} flex justify-between max-w-sm md:max-w-none md:w-[40%] items-center space-x-2`}
+				className={`${styles.form} flex justify-between max-w-sm w-[80%] md:max-w-none md:w-[40%] items-center space-x-2`}
 			>
 				<Input
 					className={`${styles.text} border-none shadow-none`}

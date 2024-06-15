@@ -10,6 +10,7 @@ export const getPaginatedProducts = async (
 ) => {
 	let url = `${productEndPoint}?page=${page}&sort=${sort}`;
 	if (categoryId) url += `&categoryId=${categoryId}`;
-	const res = await axios.get(url);
-	return res.data as PaginatedProducts;
+	const res = await fetch(url, { cache: "force-cache" });
+	const resJson = await res.json();
+	return resJson as PaginatedProducts;
 };

@@ -1,16 +1,18 @@
 import BreadCrumb from "@/components/breadCrumb/BreadCrumb";
 import ProductsGrid from "@/components/product/ProductsGrid";
-import ProductFilterButton from "@/components/product/productFilterMobile/ProductFilterButton";
+import ProductFilterRow from "@/components/product/productFilterMobile/productFilterRow/ProductFilterRow";
 import ProductFilters from "@/components/product/productFilters/ProductFilters";
 import styles from "./productPage.module.css";
 
 const page = async () => {
 	return (
 		<>
-			<div
-				className={`${styles.boxShadow} fixed bottom-0 flex md:hidden w-full`}
-			>
-				<ProductFilterButton />
+			<div className="scroll-auto">
+				<div
+					className={`${styles.boxShadow} fixed bottom-0 flex md:hidden w-full`}
+				>
+					<ProductFilterRow />
+				</div>
 			</div>
 			<div className="pt-nav-padding mx-auto flex flex-col max-w-[1024px] px-2">
 				<div className="h-[80px]">
