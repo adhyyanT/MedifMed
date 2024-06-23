@@ -26,8 +26,12 @@ const ProductsGrid = () => {
 					undefined,
 					categoryId === null ? undefined : categoryId
 				);
-				setProducts(products.products);
-				setTotalPage(products.totalPages);
+				console.log(products);
+
+				if (products.data?.products) {
+					setProducts(products.data.products);
+					setTotalPage(products.data.totalPages);
+				}
 				setCurrPage(parseInt(currPage ? currPage : "1"));
 				setIsLoading(false);
 			})();
